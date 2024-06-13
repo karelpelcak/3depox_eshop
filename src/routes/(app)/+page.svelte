@@ -1,1 +1,1 @@
-<h1 class="text-center font-extrabold text-9xl underline">E-shop je ve fázi vývoje</h1>
+<h1 class="text-center font-extrabold text-9xl">E-shop je ve fázi vývoje</h1>
