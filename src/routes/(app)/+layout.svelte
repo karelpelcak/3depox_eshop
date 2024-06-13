@@ -1,4 +1,5 @@
 <script lang="ts">
+  const Expand = true;
   import MdLocalPhone from "svelte-icons/md/MdLocalPhone.svelte";
   import MdEmail from "svelte-icons/md/MdEmail.svelte";
   import MdLocalShipping from "svelte-icons/md/MdLocalShipping.svelte";
@@ -83,15 +84,17 @@
       </div>
     </a>
   </div>
-  <div
-    class="w-screen h-auto py-4 md:py-0 md:h-[50px] bg-black flex justify-center flex-col md:flex-row gap-2 md:gap-6 content-center items-center text-white"
-  >
+  {#if Expand}
+  <h1>teste</h1>
+{:else}
+  <div class="w-screen h-auto py-4 md:py-0 md:h-[50px] bg-black flex justify-center flex-col md:flex-row gap-2 md:gap-6 content-center items-center text-white">
     <a href="/">Epoxid</a>
     <a href="/">3DTisk</a>
     <a href="/">Doprava a platba</a>
     <a href="/">Obchodni podminky</a>
     <a href="/">Kontakt</a>
   </div>
+{/if}
 </nav>
 
 <slot />
