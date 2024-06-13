@@ -1,6 +1,6 @@
 <script lang="ts">
+  import { isMobile } from "mobile-device-detect";
   let expand = true;
-
   import MdLocalPhone from "svelte-icons/md/MdLocalPhone.svelte";
   import MdEmail from "svelte-icons/md/MdEmail.svelte";
   import MdLocalShipping from "svelte-icons/md/MdLocalShipping.svelte";
@@ -8,11 +8,12 @@
   import MdPermIdentity from "svelte-icons/md/MdPermIdentity.svelte";
   import MdSearch from "svelte-icons/md/MdSearch.svelte";
   import MdShoppingCart from "svelte-icons/md/MdShoppingCart.svelte";
+  import MdMenu from "svelte-icons/md/MdMenu.svelte";
 </script>
 
 <nav>
   <div
-    class="w-screen md:h-[50px] h-[75px] flex-col md:flex-row bg-gray-100 flex justify-between items-center content-normal px-2"
+    class="w-screen md:h-[50px] h-[50px] flex-row md:flex-row bg-gray-100 flex justify-between items-center content-normal px-4"
   >
     <div class="flex gap-4">
       <a href="/" class="flex gap-1">
@@ -50,7 +51,7 @@
     </div>
   </div>
   <div
-    class="w-screen h-[150px] bg-white flex justify-between items-center content-center px-6"
+    class="w-screen h-[100px] bg-white flex justify-between items-center content-center px-6"
   >
     <div class="text-3xl font-black">
       <a href="/">
@@ -85,21 +86,43 @@
       </div>
     </a>
   </div>
-  {#if expand}
-  <h1>teste</h1>
+
+  {#if isMobile}
+    {#if expand}
+      <div></div>
+    {:else}
+      <div
+        class="w-screen h-auto py-4 md:py-0 md:h-[50px] bg-black flex justify-center flex-col md:flex-row gap-2 md:gap-6 content-center items-center text-white"
+      >
+        <a href="/">Epoxid</a>
+        <a href="/">3DTisk</a>
+        <a href="/">Doprava a platba</a>
+        <a href="/">Obchodni podminky</a>
+        <a href="/">Kontakt</a>
+      </div>
+    {/if}
   {:else}
-  <div class="w-screen h-auto py-4 md:py-0 md:h-[50px] bg-black flex justify-center flex-col md:flex-row gap-2 md:gap-6 content-center items-center text-white">
-    <a href="/">Epoxid</a>
-    <a href="/">3DTisk</a>
-    <a href="/">Doprava a platba</a>
-    <a href="/">Obchodni podminky</a>
-    <a href="/">Kontakt</a>
-  </div>
+    <div
+      class="w-screen h-auto py-4 md:py-0 md:h-[50px] bg-black flex justify-center flex-col md:flex-row gap-2 md:gap-6 content-center items-center text-white"
+    >
+      <a href="/">Epoxid</a>
+      <a href="/">3DTisk</a>
+      <a href="/">Doprava a platba</a>
+      <a href="/">Obchodni podminky</a>
+      <a href="/">Kontakt</a>
+    </div>
   {/if}
-  <button on:click={() => {
-    console.log("test");
-    expand = !expand
-    }}>test btn</button>
+
+  <div
+    class="w-screen h-[50px] bg-black flex justify-center text-center md:hidden"
+  >
+    <button
+      class="text-white"
+      on:click={() => {
+        expand = !expand;
+      }}><MdMenu /></button
+    >
+  </div>
 </nav>
 
 <slot />

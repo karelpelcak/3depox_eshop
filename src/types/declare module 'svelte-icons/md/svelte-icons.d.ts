@@ -26,3 +26,9 @@ declare module "svelte-icons/md/MdShoppingCart.svelte" {
   import { SvelteComponentTyped } from "svelte";
   export default class MdShoppingCart extends SvelteComponentTyped<{}> {}
 }
+declare module "svelte-icons/md/MdMenu.svelte" {
+  import { SvelteComponentTyped } from "svelte";
+  export default class MdMenu extends SvelteComponentTyped<{}> {}
+}
+
+
