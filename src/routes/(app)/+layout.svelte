@@ -1,5 +1,5 @@
 <script lang="ts">
-  const Expand = true;
+  let Expand = true;
   import MdLocalPhone from "svelte-icons/md/MdLocalPhone.svelte";
   import MdEmail from "svelte-icons/md/MdEmail.svelte";
   import MdLocalShipping from "svelte-icons/md/MdLocalShipping.svelte";
@@ -95,6 +95,7 @@
     <a href="/">Kontakt</a>
   </div>
 {/if}
+  <button on:click={() => {Expand = !Expand}}>test btn</button>
 </nav>
 
 <slot />
