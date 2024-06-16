@@ -1,0 +1,26 @@
+### Register User
+POST http://localhost:5173/api/auth/register
+Content-Type: application/json
+
+{
+  "Username": "testuser123",
+  "Password": "password123",
+  "Email": "test@example.com",
+  "PhoneNumber": "123456789",
+  "StreetAndNumber": "123456789",
+  "City": "123456789",
+  "PostalCode": "123456789"
+}
+
+
+###
+POST http://localhost:5173/api/auth/register
+
+Content-Type: application/json
+
+{
+  "to": "petrpelcak@seznam.cz",
+  "subject": "Test Email",
+  "text": "This is a test email sent from SvelteKit.",
+  "html": "<p>This is a <b>test email</b> sent from <i>SvelteKit</i>.</p>"
+}
