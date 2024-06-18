@@ -5,6 +5,7 @@ import { type RequestHandler } from "@sveltejs/kit";
 
 export const POST: RequestHandler = async ({ request }) => {
   let secret_key = process.env.JWT_SECRET;
+  console.log('Attempting to verify JWT with secret:', secret_key);
 
   if (!secret_key) {
     return new Response(
