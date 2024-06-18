@@ -1,4 +1,4 @@
-import { json, type RequestHandler } from "@sveltejs/kit";
+import { type RequestHandler } from "@sveltejs/kit";
 import pool from "$lib/db";
 import bcrypt from "bcrypt";
 import nodemailer from "nodemailer";
@@ -17,7 +17,7 @@ export const POST: RequestHandler = async ({ request }) => {
     } = await request.json();
     
     const existingUser: any[] = await pool.query(
-      "SELECT count(userId) AS count FROM users WHERE Email = ?",
+      "SELECT count(UserId) AS count FROM users WHERE Email = ?",
       [Email]
     );
     if (existingUser[0][0].count > 0) {
@@ -30,7 +30,7 @@ export const POST: RequestHandler = async ({ request }) => {
     const hashedPassword = await bcrypt.hash(Password, 10);
 
     await pool.query(
-      "INSERT INTO users (Username, Password, Email, PhoneNumber, StreetAndNumber, City, PostalCode) VALUES (?, ?, ?, ?, ?, ?, ?)",
+      "INSERT INTO users (Username, Password, Email, PhoneNumber, StreetAndNumber, City, PostalCode, RoleId) VALUES (?, ?, ?, ?, ?, ?, ?, 1)",
       [
         Username,
         hashedPassword,
@@ -41,7 +41,7 @@ export const POST: RequestHandler = async ({ request }) => {
         PostalCode,
       ]
     );
-    SendRegisterMail(Username, Email);
+    await SendRegisterMail(Username, Email);
     return new Response(
       JSON.stringify({ message: "User registered successfully" }),
       {

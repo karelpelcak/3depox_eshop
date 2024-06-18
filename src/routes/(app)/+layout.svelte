@@ -1,5 +1,6 @@
 <script lang="ts">
   import { isMobile } from "mobile-device-detect";
+
   let expand = true;
   import MdLocalPhone from "svelte-icons/md/MdLocalPhone.svelte";
   import MdEmail from "svelte-icons/md/MdEmail.svelte";
@@ -9,6 +10,9 @@
   import MdSearch from "svelte-icons/md/MdSearch.svelte";
   import MdShoppingCart from "svelte-icons/md/MdShoppingCart.svelte";
   import MdMenu from "svelte-icons/md/MdMenu.svelte";
+
+
+
 </script>
 
 <nav>

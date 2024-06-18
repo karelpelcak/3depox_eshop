@@ -28,4 +28,3 @@
 </ul> -->
 
 <!-- src/routes/sendEmail.svelte -->
-
