@@ -4,10 +4,8 @@
   import { role } from "$/lib/stores";
 
   const handleCheck = () =>{
-    if($role === "Admin"){
-      goto("/admin/adminpanel");
-    }else{
-      goto("/");
+    if($role !== "Admin"){
+      goto("/")
     }
   }
 
