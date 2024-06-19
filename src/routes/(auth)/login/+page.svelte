@@ -37,10 +37,12 @@
         }, 1000);
       } else {
         errorMessage = data.error || "Login failed";
+        Loading = false;
       }
     } catch (error) {
       console.error("Error during login fetch:", error);
       errorMessage = "Failed to login";
+      Loading = false;
     }
   };
 </script>

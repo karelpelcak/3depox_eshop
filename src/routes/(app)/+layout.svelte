@@ -11,7 +11,7 @@
   import MdMenu from "svelte-icons/md/MdMenu.svelte";
   import { getCookie, removeCookie } from "$/lib/cookie";
   import { role, username } from "$/lib/stores";
-  
+
   let expand = true;
   const AuthToken = getCookie("AuthToken");
 
@@ -75,17 +75,17 @@
     </div>
     <div class="flex gap-7">
       {#if !AuthToken}
-          <a href="/login" class="flex">
-              <div class="h-[24px] w-[24px]">
-                  <MdPermIdentity />
-              </div>
-              <span>Přihlásit se</span>
-          </a>
+        <a href="/login" class="flex">
+          <div class="h-[24px] w-[24px]">
+            <MdPermIdentity />
+          </div>
+          <span>Přihlásit se</span>
+        </a>
       {:else}
-          <button on:click={logout}>Odhlásit se</button>
-          <span>{$username}</span>
+        <button on:click={logout}>Odhlásit se</button>
+        <span>{$username}</span>
       {/if}
-  </div>
+    </div>
   </div>
   <div
     class="w-screen h-[100px] bg-white flex justify-between items-center content-center px-6"
@@ -136,6 +136,9 @@
         <a href="/">Doprava a platba</a>
         <a href="/">Obchodni podminky</a>
         <a href="/">Kontakt</a>
+        {#if $role === "Admin"}
+          <a href="/admin/adminpanel">Admin Panel</a>
+        {/if}
       </div>
     {/if}
   {:else}
@@ -147,6 +150,9 @@
       <a href="/">Doprava a platba</a>
       <a href="/">Obchodni podminky</a>
       <a href="/">Kontakt</a>
+      {#if $role === "Admin"}
+        <a href="/admin">Admin Panel</a>
+      {/if}
     </div>
   {/if}
 
