@@ -1,11 +1,11 @@
 ### Register User
-POST http://localhost:5173/api/auth/register
+POST https://3depox.cz/api/auth/register
 Content-Type: application/json
 
 {
   "Username": "testuser123411",
   "Password": "password12311",
-  "Email": "kaj.pelcak@seznam.cz1",
+  "Email": "kaj.pelca1k@seznam.cz1",
   "PhoneNumber": "123456789",
   "StreetAndNumber": "123456789",
   "City": "123456789",
@@ -14,7 +14,7 @@ Content-Type: application/json
 
 
 ###
-POST http://localhost:5173/api/auth/login
+POST https://3depox.cz/api/auth/login
 Content-Type: application/json
 
 {
@@ -23,5 +23,5 @@ Content-Type: application/json
 }
 ###
 
-GET http://localhost:5173/api/auth/me
+GET https://3depox.cz/api/auth/me
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6InRlc3R1c2VyMTIzNDExIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNzE4NzkwMTE3LCJleHAiOjE3MTg3OTM3MTd9.hPHWO8pb8e4veE5nN2gJtpTfoWBh3W1-uqgKCXg8ASk
