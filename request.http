@@ -3,13 +3,13 @@ POST https://3depox.cz/api/auth/register
 Content-Type: application/json
 
 {
-  "Username": "testuser123411",
-  "Password": "password12311",
-  "Email": "kaj.pelca1k@seznam.cz1",
-  "PhoneNumber": "123456789",
-  "StreetAndNumber": "123456789",
-  "City": "123456789",
-  "PostalCode": "123456789"
+  "Username": "testus1er123411",
+  "Password": "pas1sword12311",
+  "Email": "kaj.pelc1a1k@seznam.cz1",
+  "PhoneNumber": "123416789",
+  "StreetAndNumber": "1213456789",
+  "City": "1234561789",
+  "PostalCode": "1234516789"
 }
 
 
