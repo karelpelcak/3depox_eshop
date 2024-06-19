@@ -1,0 +1,32 @@
+### Register User
+POST https://3depox.cz/api/auth/register
+Content-Type: application/json
+
+{
+  "Username": "testuser12341",
+  "Password": "password1231",
+  "Email": "gryvdycz@gmail.com1",
+  "PhoneNumber": "123456789",
+  "StreetAndNumber": "123456789",
+  "City": "123456789",
+  "PostalCode": "123456789"
+}
+
+
+###
+POST https://3depox.cz/api/auth/login
+Content-Type: application/json
+
+{
+  "Email":"gryvdycz@gmail.com",
+  "Password":"password123"
+}
+###
+
+GET https://3depox.cz/api/auth/login
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTg3MzI5NDAsImV4cCI6MTcxODczNjU0MH0.oy3L3tC1SdA2DolBcosDrPkzhGpa8QoCdCzC0pbZlRE
+
+###
+
+GET https://3depox.cz/api/auth/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6InRlc3R1c2VyMTIzNCIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzE4NzM0MzEyLCJleHAiOjE3MTg3Mzc5MTJ9.jx65XhQ9xebfwUU5uX4gUfjF33vGCu6J990RlsJ6W6Y

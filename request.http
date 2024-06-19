@@ -1,0 +1,27 @@
+### Register User
+POST http://localhost:5173/api/auth/register
+Content-Type: application/json
+
+{
+  "Username": "testuser123411",
+  "Password": "password12311",
+  "Email": "kaj.pelcak@seznam.cz1",
+  "PhoneNumber": "123456789",
+  "StreetAndNumber": "123456789",
+  "City": "123456789",
+  "PostalCode": "123456789"
+}
+
+
+###
+POST http://localhost:5173/api/auth/login
+Content-Type: application/json
+
+{
+  "Email":"kaj.pelcak@seznam.cz1",
+  "Password":"password12311"
+}
+###
+
+GET http://localhost:5173/api/auth/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6InRlc3R1c2VyMTIzNDExIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNzE4NzkwMTE3LCJleHAiOjE3MTg3OTM3MTd9.hPHWO8pb8e4veE5nN2gJtpTfoWBh3W1-uqgKCXg8ASk
