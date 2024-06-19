@@ -1,11 +1,11 @@
 ### Register User
-POST https://3depox.cz/api/auth/register
+POST http://localhost:3000/api/auth/register
 Content-Type: application/json
 
 {
-  "Username": "testus1er123411",
+  "Username": "testus1e2r123411",
   "Password": "pas1sword12311",
-  "Email": "kaj.pelc1a1k@seznam.cz1",
+  "Email": "kaj.pelc1a21k@seznam.cz1",
   "PhoneNumber": "123416789",
   "StreetAndNumber": "1213456789",
   "City": "1234561789",
@@ -14,14 +14,14 @@ Content-Type: application/json
 
 
 ###
-POST https://3depox.cz/api/auth/login
+POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-  "Email":"kaj.pelcak@seznam.cz1",
-  "Password":"password12311"
+  "Email":"kaj.pelc1a21k@seznam.cz1",
+  "Password":"pas1sword12311"
 }
 ###
 
-GET https://3depox.cz/api/auth/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6InRlc3R1c2VyMTIzNDExIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNzE4NzkwMTE3LCJleHAiOjE3MTg3OTM3MTd9.hPHWO8pb8e4veE5nN2gJtpTfoWBh3W1-uqgKCXg8ASk
+GET http://localhost:3000/api/auth/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6InRlc3R1czFlMnIxMjM0MTEiLCJyb2xlIjoiVXNlciIsImlhdCI6MTcxODc5Mjc4MywiZXhwIjoxNzE4Nzk2MzgzfQ.qeyDJN3sntPLJTEbh0LrBuz-jAQ8RGx0I_FFpqo9Tt4

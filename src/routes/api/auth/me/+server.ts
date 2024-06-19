@@ -1,3 +1,4 @@
+import { config } from "$/lib/variables";
 import { json, type RequestHandler } from "@sveltejs/kit";
 
 export const GET: RequestHandler = async ({ request }) => {
@@ -15,9 +16,9 @@ export const GET: RequestHandler = async ({ request }) => {
 
   try {
     const pkg = await import('jsonwebtoken');
-    const { verify } = pkg.default; // Access the verify function from jsonwebtoken
+    const { verify } = pkg.default; 
 
-    const secret_key: string | undefined = process.env.JWT_SECRET;
+    const secret_key: string | undefined = config.JWT_SECRET;
 
     if (!secret_key) {
       return json({ message: "Secret key not found" }, { status: 500 });

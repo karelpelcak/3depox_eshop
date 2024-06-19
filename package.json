@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "dev": "vite dev",
-        "build": "vite build --mode productio",
+        "build": "vite build",
         "preview": "vite preview",
         "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
         "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -33,7 +33,6 @@
         "@sveltejs/adapter-node": "^5.0.1",
         "bcrypt": "^5.1.1",
         "cookie": "^0.6.0",
-        "dotenv": "^16.4.5",
         "jsonwebtoken": "^9.0.2",
         "mobile-device-detect": "^0.4.3",
         "mysql2": "^3.10.1",

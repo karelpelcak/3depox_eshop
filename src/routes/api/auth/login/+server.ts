@@ -2,10 +2,11 @@ import pool from "$lib/db";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { type RequestHandler } from "@sveltejs/kit";
+import { config } from "$/lib/variables";
 
 export const POST: RequestHandler = async ({ request }) => {
-  let secret_key = process.env.JWT_SECRET;
-
+  let secret_key = await config.JWT_SECRET;
+  console.log(secret_key);
   if (!secret_key) {
     return new Response(
       JSON.stringify({ error: "JWT secret key is not defined" }),
@@ -71,7 +72,7 @@ export const POST: RequestHandler = async ({ request }) => {
 };
 
 export const GET: RequestHandler = async ({ request }) => {
-  let secret_key = process.env.JWT_SECRET;
+  let secret_key = await config.JWT_SECRET;
 
   if (!secret_key) {
     return new Response(
