@@ -28,7 +28,6 @@ export const GET: RequestHandler = async ({ request }) => {
 
     const { Username, role } = decoded;
 
-    console.log("Decoded token:", decoded);
 
     return json({ Username, role });
   } catch (error) {

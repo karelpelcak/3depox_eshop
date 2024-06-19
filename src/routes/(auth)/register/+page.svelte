@@ -12,56 +12,66 @@
   let city = "";
   let postalCode = "";
 
-  const submitHadnler = async (event: Event) => {
-    event.preventDefault();
-    try {
-      if (
-        !username ||
-        !password ||
-        !email ||
-        !phoneNumber ||
-        !streetAndNumber ||
-        !city ||
-        !postalCode
-      ) {
-        errorMessage = "All value is are required";
-        return;
-      }
+  const submitHadler = async (event: Event) => {
+  event.preventDefault();
+  try {
+    if (
+      !username ||
+      !password ||
+      !email ||
+      !phoneNumber ||
+      !streetAndNumber ||
+      !city ||
+      !postalCode
+    ) {
+      errorMessage = "All fields are required";
+      return;
+    }
+    // Password validation checks
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+    if (!passwordRegex.test(password) || password.length < 8) {
+      errorMessage =
+        "Password must contain at least one uppercase letter, one lowercase letter, one digit, and be at least 8 characters long. and lenght must be 8 or longer";
+      return;
+    }
 
-      Loading = true;
-      const response = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          Username: username,
-          Password: password,
-          Email: email,
-          PhoneNumber: phoneNumber,
-          StreetAndNumber: streetAndNumber,
-          City: city,
-          PostalCode: postalCode,
-        }),
-      });
-      const data = await response.json();
-      if (response.ok) {
-        setTimeout(() => {
-          goto("/login");
-          Loading = false;
-        }, 2000);
-      } else {
-        errorMessage = data.error || "Login failed";
-      }
-    } catch (error: any) {}
-  };
+    Loading = true;
+    const response = await fetch("/api/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        Username: username,
+        Password: password,
+        Email: email,
+        PhoneNumber: phoneNumber,
+        StreetAndNumber: streetAndNumber,
+        City: city,
+        PostalCode: postalCode,
+      }),
+    });
+    const data = await response.json();
+    if (response.ok) {
+      setTimeout(() => {
+        goto("/login");
+        Loading = false;
+      }, 1000);
+    } else {
+      errorMessage = data.error || "Registration failed";
+    }
+  } catch (error: any) {
+    console.error("Error during registration:", error);
+  }
+};
+
 </script>
 
 <div
   class="w-screen mt-[100px] flex justify-center content-center items-center"
 >
   <div class="border-2 border-black p-4 rounded-md shadow-md">
-    <form on:submit={submitHadnler} class="space-y-4">
+    <form on:submit={submitHadler} class="space-y-4">
       <div class="flex flex-col">
         <label for="username" class="text-sm font-semibold"
           >Jméno a Příjmení</label

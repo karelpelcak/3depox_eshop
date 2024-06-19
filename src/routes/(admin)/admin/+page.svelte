@@ -2,12 +2,9 @@
   let username = "";
   let password = "";
 
-  const handleSubmit = () => {
-    console.log("username: " + username + " password: " + password);
-  };
 </script>
 
-<form on:submit={handleSubmit}>
+<form>
   <div
     class="w-screen h-screen bg-gray-800 flex flex-col justify-center items-center content-center gap-2"
   >
