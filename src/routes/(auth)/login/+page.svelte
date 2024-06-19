@@ -1,10 +1,12 @@
 <script lang="ts">
+  import { Circle } from "svelte-loading-spinners";
   import { goto } from "$app/navigation";
   import { setCookie } from "$lib/cookie";
 
   let email = "";
   let password = "";
   let errorMessage = "";
+  let Loading = false;
 
   const LoginFetch = async (event: Event) => {
     event.preventDefault();
@@ -14,7 +16,7 @@
         errorMessage = "Email and Password are required";
         return;
       }
-
+      Loading = true;
       const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: {
@@ -31,7 +33,8 @@
         await setCookie("AuthToken", data.token);
         setTimeout(() => {
           goto("/");
-        }, 2000);
+          Loading = false;
+        }, 1000);
       } else {
         errorMessage = data.error || "Login failed";
       }
@@ -71,11 +74,17 @@
         <p class="text-red-500 text-sm">{errorMessage}</p>
       {/if}
       <div>
-        <input
-          type="submit"
-          value="Přihlásit"
-          class="border-2 px-2 rounded-lg cursor-pointer border-black"
-        />
+        {#if Loading}
+          <div class="flex w-full justify-center">
+            <Circle size="40" color="black" unit="px" duration="0.75s" />
+          </div>
+        {:else}
+          <input
+            type="submit"
+            value="Přihlásit"
+            class="border-2 px-2 rounded-lg cursor-pointer border-black"
+          />
+        {/if}
       </div>
     </form>
   </div>

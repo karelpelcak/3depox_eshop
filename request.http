@@ -3,10 +3,10 @@ POST http://localhost:3000/api/auth/register
 Content-Type: application/json
 
 {
-  "Username": "testus1e2r123411",
-  "Password": "pas1sword12311",
-  "Email": "kaj.pelc1a21k@seznam.cz1",
-  "PhoneNumber": "123416789",
+  "Username": "PetrPelcak",
+  "Password": "Pepe1409",
+  "Email": "petrpelcak@seznam.cz",
+  "PhoneNumber": "123456789",
   "StreetAndNumber": "1213456789",
   "City": "1234561789",
   "PostalCode": "1234516789"

@@ -1,7 +1,6 @@
 <script lang="ts">
   import { isMobile } from "mobile-device-detect";
 
-  let expand = true;
   import MdLocalPhone from "svelte-icons/md/MdLocalPhone.svelte";
   import MdEmail from "svelte-icons/md/MdEmail.svelte";
   import MdLocalShipping from "svelte-icons/md/MdLocalShipping.svelte";
@@ -10,10 +9,12 @@
   import MdSearch from "svelte-icons/md/MdSearch.svelte";
   import MdShoppingCart from "svelte-icons/md/MdShoppingCart.svelte";
   import MdMenu from "svelte-icons/md/MdMenu.svelte";
-  import { getCookie } from "$/lib/cookie";
+  import { getCookie, removeCookie } from "$/lib/cookie";
   import { role, username } from "$/lib/stores";
-
+  
+  let expand = true;
   const AuthToken = getCookie("AuthToken");
+
   const LoadUser = async () => {
     const response = await fetch("/api/auth/me", {
       method: "GET",
@@ -34,6 +35,11 @@
 
   if (AuthToken) {
     LoadUser();
+  }
+
+  async function logout() {
+    removeCookie("AuthToken");
+    location.reload();
   }
 </script>
 
@@ -67,7 +73,7 @@
         <span class="hidden lg:flex">Obchodní podmínky</span>
       </a>
     </div>
-    <div>
+    <div class="flex gap-7">
       {#if !AuthToken}
           <a href="/login" class="flex">
               <div class="h-[24px] w-[24px]">
@@ -76,6 +82,7 @@
               <span>Přihlásit se</span>
           </a>
       {:else}
+          <button on:click={logout}>Odhlásit se</button>
           <span>{$username}</span>
       {/if}
   </div>

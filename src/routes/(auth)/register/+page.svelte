@@ -1,47 +1,165 @@
+<script lang="ts">
+  import { goto } from "$app/navigation";
+  import { Circle } from "svelte-loading-spinners";
+  let errorMessage = "";
+  let Loading = false;
 
-<script>
-    let to = '';
-    let subject = '';
-    let text = '';
-  
-    async function sendEmail() {
-      try {
-        const response = await fetch('/api/email', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ to, subject, text }),
-        });
-  
-        if (response.ok) {
-          alert('Email sent successfully');
-        } else {
-          const { error } = await response.json();
-          alert(`Failed to send email: ${error}`);
-        }
-      } catch (err) {
-        console.error('Error sending email:', err);
-        alert('Error sending email. Please try again later.');
+  let username = "";
+  let password = "";
+  let email = "";
+  let phoneNumber = "";
+  let streetAndNumber = "";
+  let city = "";
+  let postalCode = "";
+
+  const submitHadnler = async (event: Event) => {
+    event.preventDefault();
+    try {
+      if (
+        !username ||
+        !password ||
+        !email ||
+        !phoneNumber ||
+        !streetAndNumber ||
+        !city ||
+        !postalCode
+      ) {
+        errorMessage = "All value is are required";
+        return;
       }
-    }
-  </script>
-  
-  <h1>Send Email</h1>
-  
-  <form on:submit|preventDefault={sendEmail}>
-    <label>
-      To:
-      <input type="email" bind:value={to} required />
-    </label>
-    <label>
-      Subject:
-      <input type="text" bind:value={subject} required />
-    </label>
-    <label>
-      Message:
-      <textarea bind:value={text} rows="5" required></textarea>
-    </label>
-    <button type="submit">Send Email</button>
-  </form>
-  
+
+      Loading = true;
+      const response = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          Username: username,
+          Password: password,
+          Email: email,
+          PhoneNumber: phoneNumber,
+          StreetAndNumber: streetAndNumber,
+          City: city,
+          PostalCode: postalCode,
+        }),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        setTimeout(() => {
+          goto("/login");
+          Loading = false;
+        }, 2000);
+      } else {
+        errorMessage = data.error || "Login failed";
+      }
+    } catch (error: any) {}
+  };
+</script>
+
+<div
+  class="w-screen mt-[100px] flex justify-center content-center items-center"
+>
+  <div class="border-2 border-black p-4 rounded-md shadow-md">
+    <form on:submit={submitHadnler} class="space-y-4">
+      <div class="flex flex-col">
+        <label for="username" class="text-sm font-semibold"
+          >Jméno a Příjmení</label
+        >
+        <input
+          type="text"
+          name="username"
+          id="username"
+          class="border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          bind:value={username}
+        />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="password" class="text-sm font-semibold">Heslo</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          class="border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          bind:value={password}
+        />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="email" class="text-sm font-semibold">Email</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          class="border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          bind:value={email}
+        />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="telphone" class="text-sm font-semibold"
+          >Telefoní číslo</label
+        >
+        <input
+          type="tel"
+          name="telphone"
+          id="telphone"
+          class="border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          bind:value={phoneNumber}
+        />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="streetandnumber" class="text-sm font-semibold"
+          >Adresa a číslo popisné</label
+        >
+        <input
+          type="text"
+          name="streetandnumber"
+          id="streetandnumber"
+          class="border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          bind:value={streetAndNumber}
+        />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="city" class="text-sm font-semibold">Město</label>
+        <input
+          type="text"
+          name="city"
+          id="city"
+          class="border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          bind:value={city}
+        />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="postcode" class="text-sm font-semibold">PSČ</label>
+        <input
+          type="text"
+          name="postcode"
+          id="postcode"
+          class="border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          bind:value={postalCode}
+        />
+      </div>
+      {#if errorMessage}
+        <p class="text-red-500 text-sm">{errorMessage}</p>
+      {/if}
+      <div>
+        {#if Loading}
+          <div class="flex w-full justify-center">
+            <Circle size="40" color="black" unit="px" duration="0.75s" />
+          </div>
+        {:else}
+          <input
+            type="submit"
+            value="Přihlásit"
+            class="border-2 px-2 rounded-lg cursor-pointer border-black"
+          />
+        {/if}
+      </div>
+    </form>
+  </div>
+</div>
