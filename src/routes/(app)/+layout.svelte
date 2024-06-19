@@ -10,9 +10,31 @@
   import MdSearch from "svelte-icons/md/MdSearch.svelte";
   import MdShoppingCart from "svelte-icons/md/MdShoppingCart.svelte";
   import MdMenu from "svelte-icons/md/MdMenu.svelte";
+  import { getCookie } from "$/lib/cookie";
+  import { role, username } from "$/lib/stores";
 
+  const AuthToken = getCookie("AuthToken");
+  const LoadUser = async () => {
+    const response = await fetch("/api/auth/me", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + AuthToken,
+      },
+    });
 
+    if (response.ok) {
+      const data = await response.json();
+      await username.set(data.Username);
+      await role.set(data.role);
+    } else {
+      console.error(await response.json());
+    }
+  };
 
+  if (AuthToken) {
+    LoadUser();
+  }
 </script>
 
 <nav>
@@ -46,13 +68,17 @@
       </a>
     </div>
     <div>
-      <a href="/login" class="flex">
-        <div class="h-[24px] w-[24px]">
-          <MdPermIdentity />
-        </div>
-        <span>Přihlásit se</span>
-      </a>
-    </div>
+      {#if !AuthToken}
+          <a href="/login" class="flex">
+              <div class="h-[24px] w-[24px]">
+                  <MdPermIdentity />
+              </div>
+              <span>Přihlásit se</span>
+          </a>
+      {:else}
+          <span>{$username}</span>
+      {/if}
+  </div>
   </div>
   <div
     class="w-screen h-[100px] bg-white flex justify-between items-center content-center px-6"

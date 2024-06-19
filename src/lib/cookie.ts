@@ -1,15 +1,19 @@
 import cookie from 'cookie';
 
 export function setCookie(name: string, value: string) {
-    const cookieOptions = {
-        path: '/',
-        maxAge: 86400
-    };
-
-    document.cookie = cookie.serialize(name, value);
+    if (typeof document !== 'undefined') {
+        const cookieOptions = {
+            path: '/',
+            maxAge: 86400
+        };
+        document.cookie = cookie.serialize(name, value, cookieOptions);
+    }
 }
 
 export function getCookie(name: string) {
-    const cookies = cookie.parse(document.cookie);
-    return cookies[name];
+    if (typeof document !== 'undefined') {
+        const cookies = cookie.parse(document.cookie);
+        return cookies[name];
+    }
+    return undefined;
 }

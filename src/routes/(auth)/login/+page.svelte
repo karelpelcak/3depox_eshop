@@ -28,7 +28,7 @@
 
       const data = await response.json();
       if (response.ok) {
-        await setCookie("AuthToken", data.Token);
+        await setCookie("AuthToken", data.token);
         setTimeout(() => {
           goto("/");
         }, 2000);
