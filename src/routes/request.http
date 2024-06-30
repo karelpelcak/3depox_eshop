@@ -28,5 +28,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTg3MzI5N
 
 ###
 
+GET  http://localhost:5173/api/admin/allusers
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6InRlc3R1c2VyMTIzNCIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzE5NzYzNzMyLCJleHAiOjE3MTk3OTI1MzJ9.HGxabFv7zx-MyR3WRDtCK79ZGDryuINfS1EKleXH_rY
+
 GET https://3depox.cz/api/auth/me
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6InRlc3R1c2VyMTIzNCIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzE4NzM0MzEyLCJleHAiOjE3MTg3Mzc5MTJ9.jx65XhQ9xebfwUU5uX4gUfjF33vGCu6J990RlsJ6W6Y
