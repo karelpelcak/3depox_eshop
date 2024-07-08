@@ -12,7 +12,9 @@
   onMount(handleCheck);
 </script>
 
-<nav class="w-screen h-[40px] bg-black flex gap-20 content-center items-center px-10">
+<nav
+  class="w-screen h-[40px] bg-black flex gap-20 content-center items-center px-10"
+>
   <a href="/" class="text-white hover:text-gray-300 font-bold">Domů</a>
   <div class="flex gap-10">
     <a href="/admin/users" class="text-white">Uživatelé</a>
