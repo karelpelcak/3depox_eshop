@@ -73,7 +73,7 @@
         <span class="hidden lg:flex">Obchodní podmínky</span>
       </a>
     </div>
-    <div class="flex gap-7">
+    <div class="flex gap-6">
       {#if !AuthToken}
         <a href="/login" class="flex">
           <div class="h-[24px] w-[24px]">
@@ -137,7 +137,7 @@
         <a href="/">Obchodni podminky</a>
         <a href="/">Kontakt</a>
         {#if $role === "Admin"}
-          <a href="/admin/adminpanel">Admin Panel</a>
+          <a href="/admin">Admin Panel</a>
         {/if}
       </div>
     {/if}

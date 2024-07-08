@@ -1,6 +1,8 @@
 import pool from "$/lib/db";
 import { config } from "$/lib/variables";
 import type { RequestHandler } from "@sveltejs/kit";
+const pkg = await import("jsonwebtoken");
+const { verify } = pkg.default;
 
 export const GET: RequestHandler = async ({ request }) => {
   const authHeader = request.headers.get("Authorization");
@@ -25,9 +27,6 @@ export const GET: RequestHandler = async ({ request }) => {
   }
 
   try {
-    const pkg = await import("jsonwebtoken");
-    const { verify } = pkg.default;
-
     const secret_key: string | undefined = config.JWT_SECRET;
 
     if (!secret_key) {

@@ -18,8 +18,8 @@ POST https://3depox.cz/api/auth/login
 Content-Type: application/json
 
 {
-  "Email":"gryvdycz@gmail.com",
-  "Password":"password123"
+  "Email":"kaja.pelcak@seznam.cz",
+  "Password":"Kaja172004"
 }
 ###
 
@@ -27,9 +27,23 @@ GET https://3depox.cz/api/auth/login
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTg3MzI5NDAsImV4cCI6MTcxODczNjU0MH0.oy3L3tC1SdA2DolBcosDrPkzhGpa8QoCdCzC0pbZlRE
 
 ###
+DELETE    http://localhost:5173/api/admin/category
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6IkthcmVsIFBlbMSNw6FrIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNzE5OTI2NTk0LCJleHAiOjE3MTk5NTUzOTR9.EQVBYC_NIv5Y_yqto78nOBpGI7ktHsJcpCMk_j5Mfd8
+Content-Type: application/json
 
-GET  http://localhost:5173/api/admin/allusers
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6InRlc3R1c2VyMTIzNCIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzE5NzYzNzMyLCJleHAiOjE3MTk3OTI1MzJ9.HGxabFv7zx-MyR3WRDtCK79ZGDryuINfS1EKleXH_rY
+{
+  "CategoryName": "Auta",
+  "CategoryId": 11
+}
 
-GET https://3depox.cz/api/auth/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6InRlc3R1c2VyMTIzNCIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzE4NzM0MzEyLCJleHAiOjE3MTg3Mzc5MTJ9.jx65XhQ9xebfwUU5uX4gUfjF33vGCu6J990RlsJ6W6Y
+###
+GET http://localhost:5173/api/admin/category
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6IkthcmVsIFBlbMSNw6FrIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNzE5OTI2NTk0LCJleHAiOjE3MTk5NTUzOTR9.EQVBYC_NIv5Y_yqto78nOBpGI7ktHsJcpCMk_j5Mfd8
+###
+POST http://localhost:5173/api/admin/category
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6IkthcmVsIFBlbMSNw6FrIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNzE5OTI2NTk0LCJleHAiOjE3MTk5NTUzOTR9.EQVBYC_NIv5Y_yqto78nOBpGI7ktHsJcpCMk_j5Mfd8
+Content-Type: application/json
+
+{
+  "CategoryName": "Auta"
+}
