@@ -1,1 +1,30 @@
-products
+<!-- <script lang="ts">
+  let file: File | null = null;
+  let base64String: string = "";
+
+  const handleFileUpload = async (event: Event) => {
+    const target = event.target as HTMLInputElement;
+    file = target.files ? target.files[0] : null;
+    if (file) {
+      base64String = await convertToBase64(file);
+      console.log(base64String)
+    }
+  };
+
+  const convertToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = (error) => reject(error);
+    });
+  };
+</script>
+
+<main>
+  <h1>Upload an Image</h1>
+  <input type="file" accept="image/*" on:change={handleFileUpload} />
+</main> -->
+<script lang="ts">
+
+</script>

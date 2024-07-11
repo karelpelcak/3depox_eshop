@@ -11,7 +11,7 @@
     City: string;
     RoleId: number;
   }
-
+  
   const AuthToken = getCookie("AuthToken");
   const users = writable<User[]>([]);
 
