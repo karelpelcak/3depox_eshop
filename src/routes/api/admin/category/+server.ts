@@ -168,7 +168,7 @@ export const POST: RequestHandler = async ({ request }) => {
       });
     }
 
-    const { CategoryName } = await request.json();
+    const { CategoryName, CategoryFor } = await request.json();
 
     const decoded: any = verify(token, secret_key);
 
@@ -176,8 +176,8 @@ export const POST: RequestHandler = async ({ request }) => {
 
     if (role === "Admin") {
       const PuttingCategories: any[] = await pool.query(
-        "INSERT INTO category (CategoryName) VALUES (?)",
-        [CategoryName]
+        "INSERT INTO category (CategoryName, CategoryFor) VALUES (?, ?)",
+        [CategoryName, CategoryFor]
       );
       if (PuttingCategories[0].affectedRows === 1) {
         return new Response(
