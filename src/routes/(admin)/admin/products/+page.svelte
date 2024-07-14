@@ -1,4 +1,9 @@
 <script lang="ts">
+  import { getCookie } from "$/lib/cookie";
+  import { onMount } from "svelte";
+  import toast, { Toaster } from "svelte-french-toast";
+  import { writable } from "svelte/store";
+
   let InputStyle =
     "p-1 border-black border-2 rounded-lg focus:outline-none w-[300px]";
   let TypeVal = true;
@@ -11,9 +16,19 @@
   let productPrice = 0;
   let productQuantity = 0;
   let categoryId = 0;
-  let productType = 0;
   let file: File | null = null;
-  let base64String: string = "";
+
+  const AuthToken = getCookie("AuthToken");
+
+  interface Category {
+    CategoryId: number;
+    CategoryName: string;
+    CategoryFor: string;
+  }
+
+  const Categories3DPrint = writable<Category[]>([]);
+  const CategoriesEpoxid = writable<Category[]>([]);
+  const DisplayedCategories = writable<Category[]>([]);
 
   const handleSubmit = async () => {
     const object = {
@@ -26,9 +41,114 @@
       ProductPrice: productPrice,
       ProductQuantity: productQuantity,
       CategoryId: categoryId,
-      ProductType: productType,
     };
-    console.log(object)
+
+    try {
+      const response = await fetch("/api/admin/products", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + AuthToken,
+        },
+        body: JSON.stringify(object),
+      });
+
+      if (response.ok) {
+        toast.success("Produkt přidán");
+        setTimeout(() => {
+          productName = "";
+          productDesc = "";
+          productImage1 = "";
+          productImage2 = "";
+          productImage3 = "";
+          productImage4 = "";
+          productPrice = 0;
+          productQuantity = 0;
+          categoryId = 0;
+          DisplayedCategories.subscribe((categories) => {
+            if (categories.length > 0) {
+              categoryId = categories[0].CategoryId;
+            }
+          });
+        }, 500);
+      } else {
+        toast.error("Error");
+        setTimeout(() => {
+          productName = "";
+          productDesc = "";
+          productImage1 = "";
+          productImage2 = "";
+          productImage3 = "";
+          productImage4 = "";
+          productPrice = 0;
+          productQuantity = 0;
+          categoryId = 0;
+          DisplayedCategories.subscribe((categories) => {
+            if (categories.length > 0) {
+              categoryId = categories[0].CategoryId;
+            }
+          });
+        }, 500);
+      }
+    } catch (error) {
+      console.error("Network error:", error);
+      toast.error("Error");
+      setTimeout(() => {
+        productName = "";
+        productDesc = "";
+        productImage1 = "";
+        productImage2 = "";
+        productImage3 = "";
+        productImage4 = "";
+        productPrice = 0;
+        productQuantity = 0;
+        categoryId = 0;
+        DisplayedCategories.subscribe((categories) => {
+          if (categories.length > 0) {
+            categoryId = categories[0].CategoryId;
+          }
+        });
+      }, 500);
+    }
+  };
+
+  const LoadCategory = async () => {
+    try {
+      const response = await fetch("/api/admin/category", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + AuthToken,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const categories = data.Categories;
+
+        Categories3DPrint.set(
+          categories.filter(
+            (category: Category) => category.CategoryFor === "3dprint"
+          )
+        );
+        CategoriesEpoxid.set(
+          categories.filter(
+            (category: Category) => category.CategoryFor === "epoxid"
+          )
+        );
+
+        DisplayedCategories.set(
+          categories.filter(
+            (category: Category) => category.CategoryFor === "3dprint"
+          )
+        );
+      } else {
+        const errorData = await response.json();
+        console.error("Error fetching categories:", errorData);
+      }
+    } catch (error) {
+      console.error("Network error:", error);
+    }
   };
 
   const handleChange = (e: Event) => {
@@ -36,8 +156,14 @@
     let selectedValue = target.value;
     if (selectedValue === "3dtisk") {
       TypeVal = true;
+      Categories3DPrint.subscribe((categories) => {
+        DisplayedCategories.set(categories);
+      });
     } else if (selectedValue === "epoxid") {
       TypeVal = false;
+      CategoriesEpoxid.subscribe((categories) => {
+        DisplayedCategories.set(categories);
+      });
     }
   };
 
@@ -71,9 +197,13 @@
       }
     }
   };
+
+  onMount(LoadCategory);
 </script>
 
-<form action="" on:submit={handleSubmit}>
+<Toaster />
+
+<form action="" on:submit|preventDefault={handleSubmit}>
   <div class="flex flex-col gap-4 content-center items-center mt-5">
     <input
       type="text"
@@ -132,12 +262,15 @@
       <option value="3dtisk">3D tisk</option>
       <option value="epoxid">Epoxid</option>
     </select>
-    <select name="" id="" class={InputStyle}>
-      {#if TypeVal}
-        <option value="3dtisk">3D tisk</option>
-      {:else if !TypeVal}
-        <option value="epoxid">Epoxid</option>
-      {/if}
+    <select
+      name="category"
+      id="category"
+      class={InputStyle}
+      bind:value={categoryId}
+    >
+      {#each $DisplayedCategories as Category}
+        <option value={Category.CategoryId}>{Category.CategoryName}</option>
+      {/each}
     </select>
     <input
       type="submit"

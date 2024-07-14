@@ -41,6 +41,7 @@
         "mobile-device-detect": "^0.4.3",
         "mysql2": "^3.10.1",
         "nodemailer": "^6.9.13",
+        "svelte-french-toast": "^1.2.0",
         "svelte-icons": "^2.1.0"
     }
 }
