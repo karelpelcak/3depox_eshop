@@ -38,41 +38,29 @@
       }
     };
   
+    const truncateDescription = (desc: string, maxLength: number) => {
+      return desc.length > maxLength ? desc.substring(0, maxLength) + "..." : desc;
+    };
+  
     onMount(GetProducts);
   </script>
   
-  <style>
-    .product-card {
-      @apply bg-white shadow-md rounded-lg overflow-hidden;
-    }
-    .product-image {
-      @apply w-full h-48 object-contain;
-    }
-    .product-details {
-      @apply p-4;
-    }
-    .product-title {
-      @apply text-lg font-semibold;
-    }
-    .product-desc {
-      @apply text-gray-600 mt-2;
-    }
-    .product-price,
-    .product-quantity {
-      @apply text-gray-800 mt-2;
-    }
-  </style>
-  
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6"
+  >
     {#each $ProductsList as product}
-      <div class="product-card">
-        <img src={product.ProductImage3Url} alt={product.ProductName} class="product-image" />
-        <div class="product-details">
-          <h1 class="product-title">{product.ProductName}</h1>
-          <p class="product-desc">{product.ProductDesc}</p>
+      <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <img
+          src={product.ProductImage3Url}
+          alt={product.ProductName}
+          class="w-full h-48 object-contain"
+        />
+        <div class="p-4">
+          <h1 class="text-lg font-semibold">{product.ProductName}</h1>
+          <p class="text-gray-600 mt-2">{truncateDescription(product.ProductDesc, 36)}</p>
           <div class="flex justify-between items-center mt-4">
-            <p class="product-price">{product.ProductPrice} Kč</p>
-            <p class="product-quantity">{product.ProductQuantity} ks</p>
+            <p class="text-gray-800 mt-2">{product.ProductPrice} Kč</p>
+            <p class="text-gray-800 mt-2">{product.ProductQuantity} ks</p>
           </div>
         </div>
       </div>
