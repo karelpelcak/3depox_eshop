@@ -3,14 +3,14 @@
   import { onMount } from "svelte";
   import { writable } from "svelte/store";
 
-  interface Category {
+  interface ICategoryProps {
     CategoryId: number;
     CategoryName: string;
     CategoryFor: string;
   }
 
   const AuthToken = getCookie("AuthToken");
-  const Categories = writable<Category[]>([]);
+  const Categories = writable<ICategoryProps[]>([]);
   let SelectedCategoryName: string = "";
   let selectedCategoryFor: string = "";
   const productTypes = [

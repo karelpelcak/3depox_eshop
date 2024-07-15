@@ -3,7 +3,7 @@
   import { onMount } from "svelte";
   import { writable } from "svelte/store";
 
-  interface User {
+  interface IUserProps {
     Username: string;
     Email: string;
     PhoneNumber: string;
@@ -13,7 +13,7 @@
   }
   
   const AuthToken = getCookie("AuthToken");
-  const users = writable<User[]>([]);
+  const users = writable<IUserProps[]>([]);
 
   const LoadUsers = async () => {
     const response = await fetch("/api/admin/allusers", {

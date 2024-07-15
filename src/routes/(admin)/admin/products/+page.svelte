@@ -20,15 +20,15 @@
 
   const AuthToken = getCookie("AuthToken");
 
-  interface Category {
+  interface ICategoryProps {
     CategoryId: number;
     CategoryName: string;
     CategoryFor: string;
   }
 
-  const Categories3DPrint = writable<Category[]>([]);
-  const CategoriesEpoxid = writable<Category[]>([]);
-  const DisplayedCategories = writable<Category[]>([]);
+  const Categories3DPrint = writable<ICategoryProps[]>([]);
+  const CategoriesEpoxid = writable<ICategoryProps[]>([]);
+  const DisplayedCategories = writable<ICategoryProps[]>([]);
 
   const handleSubmit = async () => {
     const object = {
@@ -128,18 +128,18 @@
 
         Categories3DPrint.set(
           categories.filter(
-            (category: Category) => category.CategoryFor === "3dprint"
+            (category: ICategoryProps) => category.CategoryFor === "3dprint"
           )
         );
         CategoriesEpoxid.set(
           categories.filter(
-            (category: Category) => category.CategoryFor === "epoxid"
+            (category: ICategoryProps) => category.CategoryFor === "epoxid"
           )
         );
 
         DisplayedCategories.set(
           categories.filter(
-            (category: Category) => category.CategoryFor === "3dprint"
+            (category: ICategoryProps) => category.CategoryFor === "3dprint"
           )
         );
       } else {
