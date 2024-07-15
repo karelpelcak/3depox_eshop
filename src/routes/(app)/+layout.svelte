@@ -31,7 +31,7 @@
       await username.set(data.Username);
       await role.set(data.role);
     } else {
-      console.error(await response.json());
+      logout();
     }
   };
 
