@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { getCookie } from "$/lib/cookie";
+  import { getCookie, setCookie } from "$/lib/cookie";
+  import { OrderItemCount } from "$/lib/variables";
   import { onMount } from "svelte";
   import { writable } from "svelte/store";
 
@@ -51,6 +52,16 @@
     return fixed;
   };
 
+  const AddItemToOrder = (ItemId: number) => {
+    OrderItemCount.set($OrderItemCount + 1)
+    const OrderList = getCookie("OrderList");
+    if(OrderList){
+     setCookie("OrderList", OrderList + "," + ItemId.toString())
+    }else{
+      setCookie("OrderList", ItemId.toString())
+    }
+  }
+
   onMount(GetProducts);
 </script>
 
@@ -76,6 +87,9 @@
               {CenaBezDPH(product.ProductPrice)} Kč bez DPH
             </p>
           </div>
+          {#if product.CategoryId}
+          <button on:click={() => AddItemToOrder(product.ProductId)}>Pridat</button>
+        {/if}
           <p class="text-gray-800 mt-2">{product.ProductQuantity} ks</p>
         </div>
       </div>

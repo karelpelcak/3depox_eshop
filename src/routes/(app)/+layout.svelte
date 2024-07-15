@@ -11,6 +11,8 @@
   import MdMenu from "svelte-icons/md/MdMenu.svelte";
   import { getCookie, removeCookie } from "$/lib/cookie";
   import { role, username } from "$/lib/stores";
+  import { OrderItemCount } from "$/lib/variables";
+  import { onMount } from "svelte";
 
   let expand = true;
   const AuthToken = getCookie("AuthToken");
@@ -41,9 +43,19 @@
     removeCookie("AuthToken");
     location.reload();
   }
+
+  const LoadOrderList = async () => {
+    const ItemCount = await getCookie("OrderList");
+    if (ItemCount) {
+      const value = ItemCount?.split(",");
+      await OrderItemCount.set(value.length);
+    }
+  };
+
+  onMount(LoadOrderList);
 </script>
 
-<nav>
+<nav class="overflow-hidden">
   <div
     class="w-screen md:h-[50px] h-[50px] flex-row md:flex-row bg-gray-100 flex justify-between items-center content-normal px-4"
   >
@@ -119,7 +131,7 @@
         <div class="h-[24px] w-[24px]">
           <MdShoppingCart />
         </div>
-        <span class="font-bold text-xl">200</span>
+        <span class="font-bold text-xl">{$OrderItemCount}</span>
       </div>
     </a>
   </div>

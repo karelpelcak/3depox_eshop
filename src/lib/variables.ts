@@ -1,3 +1,5 @@
+import { writable } from "svelte/store";
+
 export const config = {
   SMTP_HOST: "smtp.seznam.cz",
   SMTP_PORT: 465,
@@ -11,3 +13,5 @@ export const config = {
   JWT_SECRET:
     "hd2escikw5DlwJMgleEz2fmkzVMw3Uh+uCd8N1SK73OlKG6QlVqJPVa8jS3PEc+EFpVPihTDswlQdr9Uj2NjluNPCENZ28REDIFvhNtpqR6cTTfBtGpQHdnPT1cAkSFRHILMzodKGNR8W2vOokv2G6GLVLBeiYZoNRayH05Ezo/vct7szdEOEbdKyHuImrbH2VscTY6rO3uXt21k6TqGt1UsU6lcfy+54+xhbk8cfYWNFiLM2Xuvjk3xKY9b0UQBnUCYwR0tf2YQIPyEntkrijzNrtiWJuyUrkUkP62oPX0OWvIg/lHPfje0T+oguEcE57aPCNsyvtvUqroZ5/00CA==",
 };
+
+export const OrderItemCount = writable(0);
