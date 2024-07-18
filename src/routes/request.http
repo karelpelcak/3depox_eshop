@@ -54,3 +54,7 @@ Content-Type: application/json
 {
   "CategoryName": "Auta"
 }
+
+###
+GET http://localhost:5173/api/products/productbyid?ProductId=3
+Content-Type: application/json

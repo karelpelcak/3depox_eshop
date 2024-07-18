@@ -1,6 +1,7 @@
 <script lang="ts">
   import { getCookie, setCookie } from "$/lib/cookie";
-  import { OrderItemCount } from "$/lib/variables";
+  import { CenaBezDPH } from "$/lib/functions";
+  import { OrderItemCount } from "$/lib/stores";
   import { onMount } from "svelte";
   import { writable } from "svelte/store";
 
@@ -12,12 +13,8 @@
     ProductName: string;
     ProductDesc: string;
     ProductImage1Url: string;
-    ProductImage2Url: string;
-    ProductImage3Url: string;
-    ProductImage4Url: string;
     ProductPrice: number;
     ProductQuantity: number;
-    CategoryId: number;
   }
 
   const GetProducts = async () => {
@@ -44,23 +41,16 @@
       ? desc.substring(0, maxLength) + "..."
       : desc;
   };
-
-  const CenaBezDPH = (price: number) => {
-    const sazba = 1.21;
-    const result = price / sazba;
-    const fixed = result.toFixed(2);
-    return fixed;
-  };
-
+  
   const AddItemToOrder = (ItemId: number) => {
-    OrderItemCount.set($OrderItemCount + 1)
+    OrderItemCount.set($OrderItemCount + 1);
     const OrderList = getCookie("OrderList");
-    if(OrderList){
-     setCookie("OrderList", OrderList + "," + ItemId.toString())
-    }else{
-      setCookie("OrderList", ItemId.toString())
+    if (OrderList) {
+      setCookie("OrderList", OrderList + "," + ItemId.toString());
+    } else {
+      setCookie("OrderList", ItemId.toString());
     }
-  }
+  };
 
   onMount(GetProducts);
 </script>
@@ -76,7 +66,7 @@
         class="w-full h-48 object-contain"
       />
       <div class="p-4">
-        <h1 class="text-lg font-semibold">{product.ProductName}</h1>
+        <a href={"/product/" + product.ProductId}><h1 class="text-lg font-semibold">{product.ProductName}</h1></a>
         <p class="text-gray-600 mt-2">
           {truncateDescription(product.ProductDesc, 36)}
         </p>
@@ -87,9 +77,11 @@
               {CenaBezDPH(product.ProductPrice)} Kč bez DPH
             </p>
           </div>
-          {#if product.CategoryId}
-          <button on:click={() => AddItemToOrder(product.ProductId)}>Pridat</button>
-        {/if}
+          {#if product.ProductId}
+            <button on:click={() => AddItemToOrder(product.ProductId)}
+              >Pridat</button
+            >
+          {/if}
           <p class="text-gray-800 mt-2">{product.ProductQuantity} ks</p>
         </div>
       </div>

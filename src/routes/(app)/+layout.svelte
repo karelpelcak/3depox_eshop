@@ -10,8 +10,7 @@
   import MdShoppingCart from "svelte-icons/md/MdShoppingCart.svelte";
   import MdMenu from "svelte-icons/md/MdMenu.svelte";
   import { getCookie, removeCookie } from "$/lib/cookie";
-  import { role, username } from "$/lib/stores";
-  import { OrderItemCount } from "$/lib/variables";
+  import { OrderItemCount, role, username } from "$/lib/stores";
   import { onMount } from "svelte";
 
   let expand = true;
