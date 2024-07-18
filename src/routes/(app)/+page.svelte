@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { getCookie, setCookie } from "$/lib/cookie";
+  import { getCookie } from "$/lib/cookie";
   import { CenaBezDPH } from "$/lib/functions";
-  import { OrderItemCount } from "$/lib/stores";
+  import { addToCart } from "$/lib/stores";
   import { onMount } from "svelte";
   import { writable } from "svelte/store";
 
@@ -42,16 +42,6 @@
       : desc;
   };
   
-  const AddItemToOrder = (ItemId: number) => {
-    OrderItemCount.set($OrderItemCount + 1);
-    const OrderList = getCookie("OrderList");
-    if (OrderList) {
-      setCookie("OrderList", OrderList + "," + ItemId.toString());
-    } else {
-      setCookie("OrderList", ItemId.toString());
-    }
-  };
-
   onMount(GetProducts);
 </script>
 
@@ -78,7 +68,7 @@
             </p>
           </div>
           {#if product.ProductId}
-            <button on:click={() => AddItemToOrder(product.ProductId)}
+            <button on:click={() => addToCart(product.ProductId)}
               >Pridat</button
             >
           {/if}

@@ -10,8 +10,7 @@
   import MdShoppingCart from "svelte-icons/md/MdShoppingCart.svelte";
   import MdMenu from "svelte-icons/md/MdMenu.svelte";
   import { getCookie, removeCookie } from "$/lib/cookie";
-  import { OrderItemCount, role, username } from "$/lib/stores";
-  import { onMount } from "svelte";
+  import { totalQuantity, role, username } from "$/lib/stores";
 
   let expand = true;
   const AuthToken = getCookie("AuthToken");
@@ -42,16 +41,6 @@
     removeCookie("AuthToken");
     location.reload();
   }
-
-  const LoadOrderList = async () => {
-    const ItemCount = await getCookie("OrderList");
-    if (ItemCount) {
-      const value = ItemCount?.split(",");
-      await OrderItemCount.set(value.length);
-    }
-  };
-
-  onMount(LoadOrderList);
 </script>
 
 <nav class="overflow-hidden">
@@ -130,7 +119,7 @@
         <div class="h-[24px] w-[24px]">
           <MdShoppingCart />
         </div>
-        <span class="font-bold text-xl">{$OrderItemCount}</span>
+        <span class="font-bold text-xl">{$totalQuantity}</span>
       </div>
     </a>
   </div>

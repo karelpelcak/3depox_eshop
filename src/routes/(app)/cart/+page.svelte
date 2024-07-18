@@ -1,9 +1,23 @@
-<script>
-  import CartItem from "$/lib/components/CartItem.svelte";
+<script lang="ts">
+  import CartItemLayout from "$/lib/components/CartItemLayout.svelte";
+  import { cart } from "$/lib/stores";
+  import type { CartItem } from "$/lib/types";
+
+  let items: CartItem[] = [];
+  cart.subscribe((value) => {
+    items = value;
+  });
 </script>
+
 <div class="flex flex-col items-center content-center mt-10">
-    <h1 class="text-3xl font-bold">Nákupní košík</h1>
-    <CartItem ProductName="Privesek" ProductImageUrl="https://3depox.cz/favicon.png" ProductPrice={59} ProductQuantity={5}/>
-    <CartItem ProductName="Privesek" ProductImageUrl="https://3depox.cz/favicon.png" ProductPrice={59} ProductQuantity={5}/>
-    <CartItem ProductName="Privesek" ProductImageUrl="https://3depox.cz/favicon.png" ProductPrice={59} ProductQuantity={5}/>
+  <h1 class="text-3xl font-bold">Nákupní košík</h1>
+  {#if items.length === 0}
+    <h1 class="text-3xl font-bold">Nákupní košík je prázdný</h1>
+  {:else}
+    <ul>
+      {#each items as item}
+        <CartItemLayout ProductId={item.id} ProductQuantity={item.quantity} />
+      {/each}
+    </ul>
+  {/if}
 </div>
