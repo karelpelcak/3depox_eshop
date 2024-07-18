@@ -40,8 +40,6 @@
   }
 </script>
 
-<a href="/" class="font-extrabold text-xl p-4">Domů</a>
-
 <div
   class="flex flex-row contents-center items-center justify-center gap-36 m-10 mt-20"
 >
