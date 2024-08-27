@@ -53,7 +53,7 @@
   <div class="error">{fetchError}</div>
 {:else if productData !== null}
   <div
-    class="flex flex-row h-12 w-[1400px] border-2 border-black my-1 rounded-md py-1 px-2 content-center items-center justify-between"
+    class="grid grid-cols-6 gap-4 my-2 rounded-md border-2 border-black p-2 w-[100%] items-center"
   >
     <img
       src={productData.ProductImage1Url}
@@ -64,7 +64,7 @@
     <h1>cena: {productData.ProductPrice} Kč</h1>
     <h1>Cena bez DPH: {CenaBezDPH(productData.ProductPrice)} Kč</h1>
     <div class="flex gap-2 justify-center items-center content-center"> 
-      <button class="font-extrabold text-2xl" on:click={() => handleRemoveFromCart(ProductId)}> - </button>
+      <button class="font-extrabold text-4xl" on:click={() => handleRemoveFromCart(ProductId)}> - </button>
       <h1>{ProductQuantity}</h1>
       <button class="font-extrabold text-2xl" on:click={() => addToCart(ProductId)}> + </button>
     </div>
