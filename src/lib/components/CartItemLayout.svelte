@@ -53,22 +53,22 @@
   <div class="error">{fetchError}</div>
 {:else if productData !== null}
   <div
-    class="grid grid-cols-6 gap-4 my-2 rounded-md border-2 border-black p-2 w-[100%] items-center"
+    class="grid grid-cols-1 md:grid-cols-6 gap-4 md:gap-10 my-2 rounded-md border-2 border-black p-4 md:p-2 w-[100%] items-center"
   >
     <img
       src={productData.ProductImage1Url}
       alt={productData.ProductName}
-      class="w-8 h-8"
+      class="w-16 h-16 md:w-8 md:h-8"
     />
-    <h1>{productData.ProductName}</h1>
-    <h1>cena: {productData.ProductPrice} Kč</h1>
-    <h1>Cena bez DPH: {CenaBezDPH(productData.ProductPrice)} Kč</h1>
-    <div class="flex gap-2 justify-center items-center content-center"> 
-      <button class="font-extrabold text-4xl" on:click={() => handleRemoveFromCart(ProductId)}> - </button>
-      <h1>{ProductQuantity}</h1>
+    <h1 class="text-lg md:text-base">{productData.ProductName}</h1>
+    <h1 class="text-lg md:text-base">Cena: {productData.ProductPrice} Kč</h1>
+    <h1 class="text-lg md:text-base">Cena bez DPH: {CenaBezDPH(productData.ProductPrice)} Kč</h1>
+    <div class="flex gap-4 md:gap-2 justify-center items-center">
+      <button class="font-extrabold text-2xl md:text-4xl" on:click={() => handleRemoveFromCart(ProductId)}> - </button>
+      <h1 class="text-lg md:text-base">{ProductQuantity}</h1>
       <button class="font-extrabold text-2xl" on:click={() => addToCart(ProductId)}> + </button>
     </div>
-    <h1>{productData.ProductPrice * ProductQuantity} Kč</h1>
+    <h1 class="text-lg md:text-base">{productData.ProductPrice * ProductQuantity} Kč</h1>
   </div>
 {:else}
   <div>Loading...</div>
