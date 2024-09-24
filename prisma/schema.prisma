@@ -1,0 +1,52 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model category {
+  CategoryId   Int        @id @default(autoincrement())
+  CategoryName String     @db.VarChar(125)
+  CategoryFor  String     @db.VarChar(125)
+  products     products[]
+}
+
+model products {
+  ProductId        Int      @id @default(autoincrement())
+  ProductName      String   @db.VarChar(125)
+  ProductDesc      String   @db.VarChar(255)
+  ProductImage1Url String?  @default("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png") @db.LongText
+  ProductImage2Url String?  @db.LongText
+  ProductImage3Url String?  @db.LongText
+  ProductImage4Url String?  @db.LongText
+  ProductPrice     Int
+  ProductQuantity  Int
+  CategoryId       Int
+  category         category @relation(fields: [CategoryId], references: [CategoryId], onUpdate: Restrict, map: "products_ibfk_1")
+
+  @@index([CategoryId], map: "CategoryId")
+}
+
+model roles {
+  RoleId Int     @id @default(autoincrement())
+  Role   String  @db.VarChar(20)
+  users  users[]
+}
+
+model users {
+  UserId          Int    @id @default(autoincrement())
+  Username        String @db.VarChar(125)
+  Password        String @db.VarChar(125)
+  Email           String @db.VarChar(225)
+  PhoneNumber     String @db.VarChar(20)
+  StreetAndNumber String @db.VarChar(225)
+  City            String @db.VarChar(225)
+  PostalCode      String @db.VarChar(225)
+  RoleId          Int
+  roles           roles  @relation(fields: [RoleId], references: [RoleId], onUpdate: Restrict, map: "users_ibfk_1")
+
+  @@index([RoleId], map: "RoleId")
+}

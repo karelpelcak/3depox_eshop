@@ -123,8 +123,8 @@
   <div
     class="w-screen h-auto py-4 md:py-0 md:h-[50px] bg-black flex justify-center flex-col md:flex-row gap-2 md:gap-6 content-center items-center text-white"
   >
-    <a href="/">Epoxid</a>
-    <a href="/">3DTisk</a>
+    <a href="/epoxid">Epoxid</a>
+    <a href="/3dtisk">3DTisk</a>
     <a href="/">Doprava a platba</a>
     <a href="/">Obchodni podminky</a>
     <a href="/">Kontakt</a>

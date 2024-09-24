@@ -1,48 +1,14 @@
 <script lang="ts">
-  import { getCookie } from "$/lib/cookie";
   import { CenaBezDPH, truncateDescription } from "$/lib/functions";
-  import { addToCart } from "$/lib/stores";
-  import { onMount } from "svelte";
-  import { writable } from "svelte/store";
+  import { addToCart } from "$/lib/stores.js";
 
-  const AuthToken = getCookie("AuthToken");
-  const ProductsList = writable<IProductProps[]>([]);
-
-  interface IProductProps {
-    ProductId: number;
-    ProductName: string;
-    ProductDesc: string;
-    ProductImage1Url: string;
-    ProductPrice: number;
-    ProductQuantity: number;
-  }
-
-  const GetProducts = async () => {
-    try {
-      const response = await fetch("/api/products", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + AuthToken,
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        ProductsList.set(data.Products);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  onMount(GetProducts);
+  export let data;
 </script>
 
 <div
   class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6"
 >
-  {#each $ProductsList as product}
+  {#each data.productList as product}
     <div class="bg-white shadow-md rounded-lg overflow-hidden">
       <img
         src={product.ProductImage1Url}

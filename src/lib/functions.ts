@@ -17,3 +17,8 @@ export const CenaBezDPH = (price: number) => {
     const fixed = result.toFixed(2);
     return fixed;
 };
+
+
+export const truncateDescription = (desc: string, maxLength: number) => {
+    return desc.length > maxLength ? desc.substring(0, maxLength) + '...' : desc;
+};
