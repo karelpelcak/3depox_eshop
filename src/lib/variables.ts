@@ -1,5 +1,3 @@
-import { writable } from "svelte/store";
-
 export const config = {
   SMTP_HOST: "smtp.seznam.cz",
   SMTP_PORT: 465,

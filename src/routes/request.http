@@ -14,7 +14,7 @@ Content-Type: application/json
 
 
 ###
-POST https://3depox.cz/api/auth/login
+POST http://localhost:5173/api/auth/login
 Content-Type: application/json
 
 {
@@ -58,3 +58,8 @@ Content-Type: application/json
 ###
 GET http://localhost:5173/api/products/productbyid?ProductId=3
 Content-Type: application/json
+
+
+###
+GET http://localhost:5173/api/auth/address
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6IkthcmVsIFBlbMSNw6FrIiwiRW1haWwiOiJrYWphLnBlbGNha0BzZXpuYW0uY3oiLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE3MjcwMTM5NjUsImV4cCI6MTcyNzA0Mjc2NX0.27cPsekTdRoDn1BTZWP1L8fDFaT39mSf4_lMEnymdJg

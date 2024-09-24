@@ -41,6 +41,10 @@
     };
 
     onMount(GetProducts);
+
+    const handleAdd = (id: number) => {
+        addToCart(id);
+    };
 </script>
 
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
@@ -62,7 +66,7 @@
                         </p>
                     </div>
                     {#if product.ProductId}
-                        <button on:click={() => addToCart(product.ProductId)}>Pridat</button>
+                        <button on:click={() => handleAdd(product.ProductId)}>Pridat</button>
                     {/if}
                     <p class="text-gray-800 mt-2">{product.ProductQuantity} ks</p>
                     <amp-ad

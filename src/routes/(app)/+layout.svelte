@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { isMobile } from "mobile-device-detect";
-
   import MdLocalPhone from "svelte-icons/md/MdLocalPhone.svelte";
   import MdEmail from "svelte-icons/md/MdEmail.svelte";
   import MdLocalShipping from "svelte-icons/md/MdLocalShipping.svelte";
@@ -8,11 +6,9 @@
   import MdPermIdentity from "svelte-icons/md/MdPermIdentity.svelte";
   import MdSearch from "svelte-icons/md/MdSearch.svelte";
   import MdShoppingCart from "svelte-icons/md/MdShoppingCart.svelte";
-  import MdMenu from "svelte-icons/md/MdMenu.svelte";
   import { getCookie, removeCookie } from "$/lib/cookie";
   import { totalQuantity, role, username } from "$/lib/stores";
 
-  let expand = true;
   const AuthToken = getCookie("AuthToken");
 
   const LoadUser = async () => {
