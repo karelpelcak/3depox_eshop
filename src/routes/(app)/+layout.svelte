@@ -44,25 +44,25 @@
     class="w-screen md:h-[50px] h-[50px] flex-row md:flex-row bg-gray-100 flex justify-between items-center content-normal px-4"
   >
     <div class="flex gap-4">
-      <a href="/" class="flex gap-1">
+      <a href="tel:+420123456789" class="flex gap-1">
         <div class="h-[24px] w-[24px]">
           <MdLocalPhone />
         </div>
         <span class="hidden lg:flex">+420 123 456 789</span>
       </a>
-      <a href="/" class="flex gap-1">
+      <a href="mailto:info@3depox.cz" class="flex gap-1">
         <div class="h-[24px] w-[24px]">
           <MdEmail />
         </div>
         <span class="hidden lg:flex">info@3depox.cz</span>
       </a>
-      <a href="/" class="flex gap-1">
+      <a href="/doprava_platba" class="flex gap-1">
         <div class="h-[24px] w-[24px]">
           <MdLocalShipping />
         </div>
         <span class="hidden lg:flex">Doprava a platba</span>
       </a>
-      <a href="/" class="flex gap-1">
+      <a href="/obchodni_podminky" class="flex gap-1">
         <div class="h-[24px] w-[24px]">
           <MdAssignment />
         </div>
@@ -125,9 +125,9 @@
   >
     <a href="/epoxid">Epoxid</a>
     <a href="/3dtisk">3DTisk</a>
-    <a href="/">Doprava a platba</a>
-    <a href="/">Obchodni podminky</a>
-    <a href="/">Kontakt</a>
+    <a href="/doprava_platba">Doprava a platba</a>
+    <a href="/obchodni_podminky">Obchodni podminky</a>
+    <a href="/kontakt">Kontakt</a>
     {#if $role === "Admin"}
       <a href="/admin">Admin Panel</a>
     {/if}

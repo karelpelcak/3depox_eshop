@@ -30,5 +30,10 @@ declare module "svelte-icons/md/MdMenu.svelte" {
   import { SvelteComponentTyped } from "svelte";
   export default class MdMenu extends SvelteComponentTyped<{}> {}
 }
+declare module "svelte-icons/md/MdHome.svelte" {
+  import { SvelteComponentTyped } from "svelte";
+  export default class MdHome extends SvelteComponentTyped<{}> {}
+}
+
 
 

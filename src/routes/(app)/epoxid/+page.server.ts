@@ -11,14 +11,40 @@ export const load = async () => {
         CategoryId: true,
       },
     });
+
+    let productListArray: any[] = [];
+
+    await Promise.all(
+      CategoryList.map(async (item) => {
+        const ProductList = await prisma.products.findMany({
+          where: {
+            CategoryId: item.CategoryId,
+          },
+          select: {
+            ProductId: true,
+            ProductName: true,
+            ProductDesc: true,
+            ProductImage1Url: true,
+            ProductPrice: true,
+            ProductQuantity: true,
+          },
+        });
+        productListArray.push({
+          categoryId: item.CategoryId,
+          products: ProductList,
+        });
+      })
+    );
     return {
       categoryList: CategoryList,
+      productList: productListArray,
     };
   } catch (error) {
     console.error("Error fetching category list:", error);
     return {
       categoryList: [],
-      error: "Failed to load categories.",
+      productList: [],
+      error: "Failed to load categories and products.",
     };
   }
 };
