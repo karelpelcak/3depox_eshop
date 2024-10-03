@@ -3,7 +3,7 @@
     <img src="/zasilkovna_logo.png" alt="Zásilkovna logo" class="mb-4 w-32 h-auto">
     <h2 class="text-xl font-semibold">Dopravu našich produktů zajišťuje přepravní společnost Zásilkovna</h2>
     <h2 class="text-lg font-medium mt-2"><strong>Zásilkovna:</strong> 79 Kč</h2>
-    <h2 class="text-lg font-medium mt-2"><strong>Zásilkovna na adresu:</strong> +10 9 Kč</h2>
+    <h2 class="text-lg font-medium mt-2"><strong>Zásilkovna na adresu:</strong> +109 Kč</h2>
     
     <h1 class="text-2xl font-bold mt-6">Platba</h1>
     
