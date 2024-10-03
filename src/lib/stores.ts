@@ -1,5 +1,6 @@
 import { writable, derived, get } from 'svelte/store';
 import type { CartItem } from './types';
+import prisma from './prisma';
 
 export const username = writable('');
 export const role = writable('');
@@ -23,10 +24,9 @@ if (isBrowser) {
     });
 }
 
-
-
 const addToCart = (productId: number) => {
-    
+    window.location.reload();
+
     cart.update((items) => {
         const item = items.find((item) => item.id === productId);
         if (item) {
@@ -37,6 +37,8 @@ const addToCart = (productId: number) => {
 };
 
 const removeFromCart = (productId: number) => {
+    window.location.reload();
+
     cart.update((items) => {
         const item = items.find((item) => item.id === productId);
         if (item) {

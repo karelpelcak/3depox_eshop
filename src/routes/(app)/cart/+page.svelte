@@ -2,8 +2,9 @@
     import CartItemLayout from '$/lib/components/CartItemLayout.svelte';
     import PacketaWidget from '$/lib/components/PacketaWidget.svelte';
     import { getCookie } from '$/lib/cookie';
-    import { cart, TotalPrice } from '$/lib/stores';
+    import { cart } from '$/lib/stores';
     import type { CartItem } from '$/lib/types';
+    import { onMount } from 'svelte';
     import MdLocalShipping from 'svelte-icons/md/MdLocalShipping.svelte';
 
     let items: CartItem[] = [];
@@ -13,6 +14,7 @@
     cart.subscribe((value) => {
         items = value;
     });
+
     interface IUserDataDB {
         Username: string;
         Email: string;
@@ -21,25 +23,41 @@
         StreetAndNumber: string;
         PostalCode: string;
     }
-    let UserData: IUserDataDB;
-    let selected: any;
+
+    let UserData: IUserDataDB | null = null;
+    let selected: string | null = null;
+
+    const fetchPrize = async () => {
+        const res = await fetch('/api/products/totalsum', {
+            method: 'POST',
+            body: JSON.stringify({
+                idlist: items,
+            }),
+        });
+
+        const data = await res.json();
+        Sum = data.Price;
+    };
 
     const handleDeliveryChange = async (event: Event) => {
         const target = event.target as HTMLSelectElement;
         selectedDelivery = target.value;
+
         if (selected !== selectedDelivery) {
             if (selected === 'zasilkovnaadresa') {
-                Sum = Sum - 109;
+                Sum -= 109;
             } else if (selected === 'zasilkovna') {
-                Sum = Sum - 79;
+                Sum -= 79;
             }
         }
+
         if (selectedDelivery === 'zasilkovnaadresa') {
             await HandleUserAddress();
-            Sum = Sum + 109;
+            Sum += 109;
         } else if (selectedDelivery === 'zasilkovna') {
-            Sum = Sum + 79;
+            Sum += 79;
         }
+
         selected = selectedDelivery;
     };
 
@@ -56,14 +74,17 @@
                 Authorization: `Bearer ${JWTToken}`,
             },
         });
+
         const data = await response.json();
         if (response.ok) {
-            const obj: IUserDataDB = await data.Adr;
-            await setUserDataFromDB(obj);
+            const obj: IUserDataDB = data.Adr;
+            setUserDataFromDB(obj);
         } else {
             console.log(data);
         }
     };
+
+    onMount(fetchPrize);
 </script>
 
 <div class="flex flex-col items-center content-center mt-10">
@@ -105,8 +126,8 @@
                 <h1 class="text-lg font-semibold">Velíkovská 235</h1>
                 <h2 class="text-md text-gray-600">763 14, Zlín Štípa</h2>
                 <p class="text-sm text-gray-600">
-                    Jakmile bude objednávka připravená budete kontaktování skrze E-mail a bude si moct dojet pro
-                    objednávku
+                    Jakmile bude objednávka připravená, budete kontaktování skrze E-mail a budete si moct dojet pro
+                    objednávku.
                 </p>
             </div>
         {:else if selectedDelivery === 'zasilkovnaadresa'}
@@ -131,7 +152,17 @@
                         class="border border-gray-300 rounded-md p-2 w-full"
                     />
                 {:else}
-                    <p class="text-gray-500">Načítání údajů...</p>
+                    <input
+                        type="text"
+                        placeholder="Ulice a číslo popisné"
+                        class="border border-gray-300 rounded-md p-2 w-full"
+                    />
+                    <input
+                        type="text"
+                        placeholder="Obec / Město"
+                        class="border border-gray-300 rounded-md p-2 w-full"
+                    />
+                    <input type="text" placeholder="PSČ" class="border border-gray-300 rounded-md p-2 w-full" />
                 {/if}
             </div>
         {/if}

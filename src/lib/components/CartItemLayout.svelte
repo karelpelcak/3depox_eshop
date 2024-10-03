@@ -5,6 +5,7 @@
 
     export let ProductId: number;
     export let ProductQuantity: number;
+    let RGBString: string = '';
 
     interface IProductProps {
         ProductId: number;
@@ -61,7 +62,9 @@
         <img src={productData.ProductImage1Url} alt={productData.ProductName} class="w-16 h-16 md:w-8 md:h-8" />
         <h1 class="text-lg md:text-base">{productData.ProductName}</h1>
         <h1 class="text-lg md:text-base">Cena: {productData.ProductPrice} Kč</h1>
-        <h1 class="text-lg md:text-base">Cena bez DPH: {CenaBezDPH(productData.ProductPrice)} Kč</h1>
+        <h1 class="text-lg md:text-base" style="background-color: {RGBString}">
+            Cena bez DPH: {CenaBezDPH(productData.ProductPrice)} Kč
+        </h1>
         <div class="flex gap-4 md:gap-2 justify-center items-center">
             <button class="font-extrabold text-2xl md:text-4xl" on:click={() => handleRemoveFromCart(ProductId)}>
                 -
