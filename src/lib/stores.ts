@@ -1,6 +1,5 @@
 import { writable, derived, get } from 'svelte/store';
 import type { CartItem } from './types';
-import prisma from './prisma';
 
 export const username = writable('');
 export const role = writable('');
