@@ -5,6 +5,8 @@
   export let data;
 </script>
 
+<title>{`${data.name?.CategoryFor} -  ${data.name?.CategoryName}`}</title>
+
 <div
   class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6"
 >
@@ -34,16 +36,6 @@
             >
           {/if}
           <p class="text-gray-800 mt-2">{product.ProductQuantity} ks</p>
-          <amp-ad
-            width="100vw"
-            height="320"
-            type="adsense"
-            data-ad-client="ca-pub-5702656857463597"
-            data-ad-slot="7034287682"
-            data-auto-format="rspv"
-            data-full-width=""
-          >
-          </amp-ad>
         </div>
       </div>
     </div>

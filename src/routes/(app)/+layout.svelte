@@ -10,7 +10,6 @@
   import { totalQuantity, role, username } from "$/lib/stores";
 
   const AuthToken = getCookie("AuthToken");
-
   const LoadUser = async () => {
     const response = await fetch("/api/auth/me", {
       method: "GET",
@@ -120,18 +119,19 @@
     </a>
   </div>
 
-  <div
-    class="w-screen h-auto py-4 md:py-0 md:h-[50px] bg-black flex justify-center flex-col md:flex-row gap-2 md:gap-6 content-center items-center text-white"
-  >
-    <a href="/epoxid">Epoxid</a>
-    <a href="/3dtisk">3DTisk</a>
-    <a href="/doprava_platba">Doprava a platba</a>
-    <a href="/obchodni_podminky">Obchodni podminky</a>
-    <a href="/kontakt">Kontakt</a>
-    {#if $role === "Admin"}
-      <a href="/admin">Admin Panel</a>
-    {/if}
-  </div>
+  <div class="w-full h-auto py-4 md:py-6 bg-black flex flex-col md:flex-row justify-center items-center text-white shadow-md transition-all duration-300">
+    <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8">
+        <a href="/epoxid" class="text-lg font-semibold hover:text-gray-300 transition duration-200">Epoxid</a>
+        <a href="/3dtisk" class="text-lg font-semibold hover:text-gray-300 transition duration-200">3DTisk</a>
+        <a href="/doprava_platba" class="text-lg font-semibold hover:text-gray-300 transition duration-200">Doprava a platba</a>
+        <a href="/obchodni_podminky" class="text-lg font-semibold hover:text-gray-300 transition duration-200">Obchodní podmínky</a>
+        <a href="/kontakt" class="text-lg font-semibold hover:text-gray-300 transition duration-200">Kontakt</a>
+        {#if $role === "Admin"}
+            <a href="/admin" class="text-lg font-semibold hover:text-gray-300 transition duration-200">Admin Panel</a>
+        {/if}
+    </div>
+</div>
+
 </nav>
 
 <slot />

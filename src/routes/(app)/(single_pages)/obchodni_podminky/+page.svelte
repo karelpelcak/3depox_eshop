@@ -1,3 +1,5 @@
+<title>Obchodní podmínky</title>
+
 <div class="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg">
     <h1 class="text-2xl font-bold mb-4">Obchodní podmínky</h1>
     <div class="space-y-6">
@@ -5,7 +7,7 @@
         <h2 class="text-xl font-semibold">1. Úvodní ustanovení</h2>
         <p>
           Tyto obchodní podmínky (dále jen „podmínky“) se vztahují na nákup zboží
-          prostřednictvím internetového obchodu <strong>EpoxidShop</strong> (dále jen
+          prostřednictvím internetového obchodu <strong>3Depox.cz</strong> (dále jen
           „e-shop“). Uzavřením kupní smlouvy zákazník (dále jen „kupující“)
           souhlasí s těmito podmínkami.
         </p>
