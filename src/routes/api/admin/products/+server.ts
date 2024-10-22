@@ -36,6 +36,8 @@ export const POST: RequestHandler = async ({ request }) => {
       });
     }
 
+    verify(token, secret_key);
+
     const {
       ProductName,
       ProductDesc,
@@ -47,7 +49,7 @@ export const POST: RequestHandler = async ({ request }) => {
       ProductQuantity,
       CategoryId,
     } = await request.json();
-
+    
     if (
       !ProductName ||
       !ProductDesc ||

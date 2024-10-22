@@ -86,7 +86,7 @@
     </div>
     <div class="flex flex-col gap-8">
         <h1 class={`text-3xl`}>{data.product.ProductName}</h1>
-        <p class="break-words w-[300px]">{data.product.ProductDesc}</p>
+        <p class="break-words w-[300px]">{@html data.product.ProductDesc}</p>
 
         <div class="flex justify-between">
             <div>

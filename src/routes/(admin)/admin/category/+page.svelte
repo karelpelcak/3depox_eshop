@@ -86,6 +86,7 @@
       }),
     });
     if (response.ok) {
+      // Optionally handle success
     } else {
       const ErrorData = await response.json();
       console.error(ErrorData);
@@ -100,29 +101,39 @@
     LoadCategory();
     SelectedCategoryName = "";
   };
+  
   onMount(LoadCategory);
 </script>
 
 <div class="container mx-auto px-4 py-8">
-  <div class=" my-4 flex gap-4">
+  <h2 class="text-2xl font-bold text-center mb-6 text-blue-900">Správa Kategorií</h2>
+  <div class="my-4 flex gap-4">
     <input
       type="text"
-      class="focus:outline-none border-2 border-black"
+      class="focus:outline-none border-2 border-blue-700 rounded-md px-3 py-2"
+      placeholder="Název kategorie"
       bind:value={SelectedCategoryName}
     />
     <select
       name="productType"
       id="productType"
+      class="border-2 border-blue-700 rounded-md px-3 py-2"
       bind:value={selectedCategoryFor}
     >
+      <option value="" disabled selected>Vyberte typ produktu</option>
       {#each productTypes as typeVal}
         <option value={typeVal.Value}>{typeVal.displayName}</option>
       {/each}
     </select>
-    <button on:click={AddCategory}>Přidat</button>
+    <button
+      on:click={AddCategory}
+      class="bg-blue-900 text-white border-2 border-blue-700 rounded-md px-4 py-2 hover:bg-blue-800 transition-all duration-150"
+    >
+      Přidat
+    </button>
   </div>
-  <table class="min-w-full bg-white border border-gray-200">
-    <thead>
+  <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-lg">
+    <thead class="bg-blue-800 text-white">
       <tr>
         <th class="py-2 px-4 border-b">Id</th>
         <th class="py-2 px-4 border-b">Kategorie</th>
@@ -132,17 +143,17 @@
     </thead>
     <tbody>
       {#each $Categories as Category}
-        <tr class="hover:bg-gray-100 text-center">
+        <tr class="hover:bg-gray-100 text-center transition-colors">
           <td class="py-2 px-4 border-b">{Category.CategoryId}</td>
           <td class="py-2 px-4 border-b">{Category.CategoryName}</td>
           <td class="py-2 px-4 border-b">{Category.CategoryFor}</td>
           <td class="py-2 px-4 border-b">
             <button
-              class="text-red-500"
-              on:click={() =>
-                deleteCategory(Category.CategoryId, Category.CategoryName)}
-              >Smazat</button
+              class="text-red-500 hover:text-red-700 transition-colors"
+              on:click={() => deleteCategory(Category.CategoryId, Category.CategoryName)}
             >
+              Smazat
+            </button>
           </td>
         </tr>
       {/each}

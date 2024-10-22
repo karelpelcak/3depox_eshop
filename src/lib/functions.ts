@@ -19,7 +19,8 @@ export const CenaBezDPH = (price: number) => {
 };
 
 export const truncateDescription = (desc: string, maxLength: number) => {
-    return desc.length > maxLength ? desc.substring(0, maxLength) + '...' : desc;
+    const plainText = desc.replace(/<[^>]*>/g, '');
+    return plainText.length > maxLength ? plainText.substring(0, maxLength) + '...' : plainText;
 };
 
 export const RGBAverage = (base64: string) => {
